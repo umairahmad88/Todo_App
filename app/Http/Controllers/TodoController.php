@@ -76,7 +76,20 @@ class TodoController extends Controller
         // Redirect back to the index page
         return redirect()->route('todos.index');
     }
+    public function destroy(Request $request)
+    {
+        $todo = Todo::find($request->todo_id);
 
+        if (!$todo) {
+            return redirect()->route('todos.index')->withErrors(['error' => 'No Todo Found!']);
+        }
 
+        $todo->delete();
+
+        // Optionally, you can flash a success message
+        session()->flash('alert-success', 'Todo deleted successfully.');
+
+        return redirect()->route('todos.index');
+    }
 
 }
