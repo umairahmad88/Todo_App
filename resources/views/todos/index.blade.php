@@ -43,6 +43,12 @@
                             {{ Session::get('error') }}
                         </div>
                     @endif
+                    <div class="p-2 text-gray-900 d-flex justify-content-between align-items-center">
+                        <h2 class="heading">Todo's</h2>
+                        <a href="{{ route('todos.create') }}" class="btn btn-primary mb-3" style="margin-right: 70px; float: right;">Create</a>
+                    </div>
+
+                    {{-- <a href="{{ route('todos.create') }}" class="btn btn-primary mb-3" style="margin-right: 80px; float: right;">Create</a> --}}
 
                     @if (count($todos) > 0)
                         <table class="table">
