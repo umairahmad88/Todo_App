@@ -30,13 +30,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('todos/index',[TodoController::class, 'index'])->name('todos.index');
-Route::get('todos/create',[TodoController::class, 'create'])->name('todos.create');
 
-Route::post('todos/store',[TodoController::class, 'store'])->name('todos.store');
-Route::get('todos/show/{id}',[TodoController::class, 'show'])->name('todos.show');
-Route::get('todos/{id}/edit',[TodoController::class, 'edit'])->name('todos.edit');
-Route::put('todos/update', [TodoController::class, 'update'])->name('todos.update');
-Route::delete('todos/destroy', [TodoController::class, 'destroy'])->name('todos.destroy');
+Route::group(['prefix' => 'todos', 'as' => 'todos.'], function () {
+    Route::get('index', [TodoController::class, 'index'])->name('index');
+    Route::get('create', [TodoController::class, 'create'])->name('create');
+    Route::post('store', [TodoController::class, 'store'])->name('store');
+    Route::get('show/{id}', [TodoController::class, 'show'])->name('show');
+    Route::get('{id}/edit', [TodoController::class, 'edit'])->name('edit');
+    Route::put('update', [TodoController::class, 'update'])->name('update');
+    Route::delete('destroy', [TodoController::class, 'destroy'])->name('destroy');
+});
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
