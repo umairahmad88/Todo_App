@@ -33,7 +33,7 @@
                                 <option value="0">In Completed</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">update
+                        <button type="submit" class="btn btn-primary">Update
                         </button>
                     </div>
                 </form>
